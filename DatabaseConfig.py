@@ -1,4 +1,5 @@
 import psycopg2
+from requests import options
 
 conn = psycopg2.connect(
     database='GreenhouseManager',
@@ -8,6 +9,5 @@ conn = psycopg2.connect(
     port='5432'
 )
 
-conn.autocommit = True
 cursor = conn.cursor
 
