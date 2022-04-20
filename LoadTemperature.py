@@ -18,10 +18,10 @@ app = Flask(__name__)
 @app.route("/temperature")
 def return_temperature():
     try:
-        sql = "select time, temperature from TemperatureRecords where id < %s"
+        sql = "select temperature from TemperatureRecords "
         print("started")
         print(dbCursor)
-        dbCursor.execute(sql, (700000,))
+        dbCursor.execute(sql)
         print("Execution complete")
         temperatureData = dbCursor.fetchall()
         print("fetchall complete")
