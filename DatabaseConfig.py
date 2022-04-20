@@ -6,7 +6,8 @@ conn = psycopg2.connect(
     user='postgres',
     password='Cwoodfc2010',
     host='localhost',
-    port='5432'
+    port='5432',
+    sslmode='disable'
 )
 
 cursor = conn.cursor
