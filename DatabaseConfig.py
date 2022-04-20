@@ -1,9 +1,10 @@
+import os
 import psycopg2
 
 conn = psycopg2.connect(
     database='GreenhouseManager',
-    user='postgres',
-    password='Cwoodfc2010',
+    user=os.environ['postgres'],
+    password=os.environ['Cwoodfc2010'],
     host='localhost',
     port='5432'
 )
