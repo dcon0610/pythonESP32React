@@ -20,6 +20,7 @@ def return_temperature():
     try:
         sql = "select time, temperature from TemperatureRecords where id < %s"
         print("started")
+        print(dbCursor)
         dbCursor.execute(sql, (700000,))
         print("Execution complete")
         temperatureData = dbCursor.fetchall()
