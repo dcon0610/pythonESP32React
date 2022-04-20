@@ -28,8 +28,8 @@ def return_temperature():
             temperatureDict["temperature"].append(row['temperature'])
         fig = create_svg(temperatureDict)
         return fig
-    except Exception:
-        print(Exception)
+    except Exception as e:
+        print(repr(e))
         return("exception")
 
 
