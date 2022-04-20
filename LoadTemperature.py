@@ -38,7 +38,6 @@ def create_svg(df):
 def get_temperature():
     while(True):
         try: 
-            
             url = "https://b324-27-33-189-105.ngrok.io/temperature"
             r = requests.get(url)
             tempData = json.loads(r.content.decode('UTF-8'))
@@ -66,7 +65,7 @@ if __name__ == '__main__':
 
     # run() method of Flask class runs the application 
     # on the local development server.
-    app.run(threaded = True, debug=True, use_reloader=False)
+app.run(host='0.0.0.0')
 
 
 
