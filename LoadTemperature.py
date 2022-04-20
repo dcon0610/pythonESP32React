@@ -65,6 +65,7 @@ def get_temperature():
             print(e) 
 
         db.conn.commit()
+        db.conn.close()
         time.sleep(10*60)
 if __name__ == '__main__':
 
