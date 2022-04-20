@@ -60,7 +60,7 @@ def get_temperature():
             print(e) 
 
         db.conn.commit()
-        time.sleep(10)
+        time.sleep(10*60)
 if __name__ == '__main__':
 
     p = Process(target=get_temperature)
