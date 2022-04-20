@@ -30,7 +30,7 @@ def return_temperature():
         return fig
     except Exception:
         print(Exception)
-        return(Exception)
+        return("exception")
 
 
 def create_svg(df):
