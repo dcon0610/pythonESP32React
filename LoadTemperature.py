@@ -17,16 +17,20 @@ app = Flask(__name__)
 
 @app.route("/temperature")
 def return_temperature():
-    sql = "select time, temperature from TemperatureRecords where id < %s"
-    dbCursor.execute(sql, (700000,))
-    temperatureData = dbCursor.fetchall()
-    temperatureDict = dict( time = [], temperature =[])
-    for row in temperatureData:
-        
-        temperatureDict["time"].append((row['time']).strftime("%x %X"))
-        temperatureDict["temperature"].append(row['temperature'])
-    fig = create_svg(temperatureDict)
-    return fig
+    try:
+        sql = "select time, temperature from TemperatureRecords where id < %s"
+        dbCursor.execute(sql, (700000,))
+        temperatureData = dbCursor.fetchall()
+        temperatureDict = dict( time = [], temperature =[])
+        for row in temperatureData:
+            
+            temperatureDict["time"].append((row['time']).strftime("%x %X"))
+            temperatureDict["temperature"].append(row['temperature'])
+        fig = create_svg(temperatureDict)
+        return fig
+    except Exception as e:
+        print(e)
+        return(str(e))
 
 def create_svg(df):
     fig = px.line(df, x="time", y="temperature", title='soil temp')
