@@ -45,7 +45,7 @@ def create_svg(df):
 def get_temperature():
     while(True):
         try: 
-            url = "https://a29f-27-33-189-105.ngrok.io"
+            url = "https://01fa-27-33-189-105.ngrok.io/temperature"
             r = requests.get(url)
             tempData = json.loads(r.content.decode('UTF-8'))
             temperature = tempData.get('value')
