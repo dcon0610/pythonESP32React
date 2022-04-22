@@ -60,6 +60,9 @@ def get_temperature():
 
             print(tempData.get('value'))
         except Exception as e:
+            sql = '''insert into TemperatureRecords(time, temperature)
+            VALUES(%s, %s);'''
+            dbCursor.execute(sql,(date, 50))
             print(e) 
 
         db.conn.commit()
