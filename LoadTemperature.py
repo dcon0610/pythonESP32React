@@ -10,6 +10,9 @@ import time
 from multiprocessing import Process, Value
 import plotly.express as px
 import psycopg2.extras
+import plotly.io as pio
+
+pio.kaleido.scope.default_format="svg"
 
 dbCursor = db.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
 
@@ -42,7 +45,7 @@ def create_svg(df):
 def get_temperature():
     while(True):
         try: 
-            url = "https://b324-27-33-189-105.ngrok.io/temperature"
+            url = "https://a29f-27-33-189-105.ngrok.io"
             r = requests.get(url)
             tempData = json.loads(r.content.decode('UTF-8'))
             temperature = tempData.get('value')
