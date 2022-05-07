@@ -1,0 +1,7 @@
+frontend/node_modules
+venv
+wsgi.py
+LoadTemperature.ini
+LoadTemperature.sock
+__pycache__
+venvd

@@ -66,12 +66,12 @@ def get_temperature():
         time.sleep(10*60)
 
 p = Process(target=get_temperature)
+p.start()
 
     # run() method of Flask class runs the application 
     # on the local development server.
 if __name__ == '__main__':
-    p.start()
-    app.run()
+    app.run('0.0.0.0')
 
 
 
