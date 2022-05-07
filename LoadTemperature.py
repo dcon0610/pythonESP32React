@@ -1,3 +1,4 @@
+
 from re import X
 from sqlite3 import Date
 from venv import create
@@ -5,7 +6,7 @@ from flask import Flask, g
 import requests
 import DatabaseConfig as db
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 from multiprocessing import Process, Value
 import plotly.express as px
@@ -21,31 +22,31 @@ app = Flask(__name__)
 @app.route("/temperature")
 def return_temperature():
     try:
-        sql = "select time, temperature from TemperatureRecords where id < %s"
-        dbCursor.execute(sql, (700000,))
+        sql = "select time, temperature from TemperatureRecords;"
+        dbCursor.execute(sql)
         temperatureData = dbCursor.fetchall()
         temperatureDict = dict( time = [], temperature =[])
+        print("gpt tp jere")
         for row in temperatureData:
             
-            temperatureDict["time"].append((row['time']).strftime("%x %X"))
+            temperatureDict["time"].append((row['time']))
             temperatureDict["temperature"].append(row['temperature'])
-        fig = create_svg(temperatureDict)
-        return fig
+        return temperatureDict
     except Exception as e:
         print(e)
         return(str(e))
 
 def create_svg(df):
     fig = px.line(df, x="time", y="temperature", title='soil temp')
-    fig.update_xaxes(nticks=5)
-    fig.update_yaxes(range=[10, 30])
-    img_bytes = fig.to_image(format="svg", width=1500, height=1000)
+    fig.update_xaxes(dtick=60*60*24)
+    fig.update_yaxes(range=[-5, 50])
+    img_bytes = fig.to_image(format="svg")
     return img_bytes
 
 def get_temperature():
     while(True):
         try: 
-            url = "https://01fa-27-33-189-105.ngrok.io/temperature"
+            url = "http://0d38-27-33-189-105.ngrok.io/temperature"
             r = requests.get(url)
             tempData = json.loads(r.content.decode('UTF-8'))
             temperature = tempData.get('value')
@@ -60,18 +61,15 @@ def get_temperature():
 
             print(tempData.get('value'))
         except Exception as e:
-            print(e) 
-
+            print(e)
         db.conn.commit()
         time.sleep(10*60)
-if __name__ == '__main__':
 
-    p = Process(target=get_temperature)
-    p.start()
-
-
+p = Process(target=get_temperature)
+p.start()
     # run() method of Flask class runs the application 
     # on the local development server.
+if __name__ == '__main__':
     app.run(host='0.0.0.0')
 
 
