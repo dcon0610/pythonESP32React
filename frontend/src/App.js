@@ -1,22 +1,26 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
+const baseURL = "http://127.0.0.1:9566/test"
 function App() {
+ const [post, setPost] = React.useState("");
+
+ React.useEffect(() => {
+   axios.get(baseURL).then((response) => {
+    console.log("Response:", response);
+   setPost(response);
+   
+ });
+},[]);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+         this is the data returned: {post.data}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
       </header>
     </div>
   );
