@@ -10,7 +10,7 @@ function App() {
  React.useEffect(() => {
    axios.get(baseURL).then((response) => {
     console.log("Response:", response);
-   setPost(response);
+   setPost(response.data);
    
  });
 },[]);
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-         this is the data returned: {post.data}
+         this is the data returned: {post.message}
         </p>
 
       </header>

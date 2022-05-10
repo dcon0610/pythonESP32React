@@ -2,7 +2,7 @@
 from re import X
 from sqlite3 import Date
 from venv import create
-from flask import Flask, g
+from flask import Flask, g, jsonify
 from flask_cors import CORS
 import requests
 import DatabaseConfig as db
@@ -23,7 +23,9 @@ cors = CORS(app)
 
 @app.route("/test")
 def test_app():
-    return "The api is working"
+    response = jsonify(message="Simple server is running")
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 @app.route("/temperature")
 def return_temperature():
     try:
@@ -71,11 +73,12 @@ def get_temperature():
         time.sleep(10*60)
 
 p = Process(target=get_temperature)
-p.start()
+
 
     # run() method of Flask class runs the application 
     # on the local development server.
 if __name__ == '__main__':
+    p.start()
     app.run(port = 9566)
 
 
