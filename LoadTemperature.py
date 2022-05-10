@@ -3,6 +3,7 @@ from re import X
 from sqlite3 import Date
 from venv import create
 from flask import Flask, g
+from flask_cors import CORS
 import requests
 import DatabaseConfig as db
 import json
@@ -18,7 +19,11 @@ pio.kaleido.scope.default_format="svg"
 dbCursor = db.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
 
 app = Flask(__name__)
+cors = CORS(app)
 
+@app.route("/test")
+def test_app():
+    return "The api is working"
 @app.route("/temperature")
 def return_temperature():
     try:
@@ -71,7 +76,7 @@ p.start()
     # run() method of Flask class runs the application 
     # on the local development server.
 if __name__ == '__main__':
-    app.run('0.0.0.0')
+    app.run(port = 9566)
 
 
 
