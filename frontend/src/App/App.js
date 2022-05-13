@@ -1,7 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './../logo.svg';
 import './App.css';
 import axios from 'axios';
+import Navbar from './../Components/navbar'
+
 
 const baseURL = "/api/test"
 function App() {
@@ -15,14 +17,14 @@ function App() {
  });
 },[]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-         this is the data returned: {post.message}
-        </p>
 
-      </header>
-    </div>
+      
+      <div>
+        <Navbar/>
+        <div> Data is: {post.message}</div>
+        
+      </div>
+
   );
 }
 
