@@ -21,12 +21,12 @@ dbCursor = db.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route("/test")
+@app.route("/api/test")
 def test_app():
     response = jsonify(message="Simple server is running")
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
-@app.route("/temperature")
+@app.route("/api/temperature")
 def return_temperature():
     try:
         sql = "select time, temperature from TemperatureRecords;"
@@ -73,15 +73,8 @@ def get_temperature():
         time.sleep(10*60)
 
 p = Process(target=get_temperature)
-
+p.start()
 
     # run() method of Flask class runs the application 
     # on the local development server.
-if __name__ == '__main__':
-    p.start()
-    app.run(port = 9566)
-
-
-
-
 

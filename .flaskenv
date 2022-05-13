@@ -1,0 +1,2 @@
+FLASK_APP=LoadTemperature.py
+FLASK_ENV=development

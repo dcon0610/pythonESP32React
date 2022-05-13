@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
-const baseURL = "http://127.0.0.1:9566/test"
+const baseURL = "/api/test"
 function App() {
  const [post, setPost] = React.useState("");
 
