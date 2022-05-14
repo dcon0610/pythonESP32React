@@ -1,16 +1,16 @@
 import React from 'react';
-import logo from './../logo.svg';
 import './App.css';
-import axios from 'axios';
 import Navbar from './../Components/navbar'
+import Plot from './../Components/plotly'
+import Api from './../Utils/Api'
 
 
-const baseURL = "/api/test"
+
 function App() {
  const [post, setPost] = React.useState("");
 
  React.useEffect(() => {
-   axios.get(baseURL).then((response) => {
+   Api.test().then((response) => {
     console.log("Response:", response);
    setPost(response.data);
    
@@ -21,7 +21,7 @@ function App() {
       
       <div>
         <Navbar/>
-        <div> Data is: {post.message}</div>
+        <Plot/>
         
       </div>
 

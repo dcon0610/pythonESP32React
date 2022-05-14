@@ -53,7 +53,7 @@ def create_svg(df):
 def get_temperature():
     while(True):
         try: 
-            url = "http://0d38-27-33-189-105.ngrok.io/temperature"
+            url = "http://4e43-27-33-189-105.ngrok.io/temperature"
             r = requests.get(url)
             tempData = json.loads(r.content.decode('UTF-8'))
             temperature = tempData.get('value')
@@ -74,7 +74,8 @@ def get_temperature():
 
 p = Process(target=get_temperature)
 p.start()
-
+if __name__ == '__main__':
+   app.run(port=9566)
     # run() method of Flask class runs the application 
     # on the local development server.
 
