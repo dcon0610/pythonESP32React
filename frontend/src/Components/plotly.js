@@ -29,7 +29,7 @@ return (
           marker: {color: 'blue'},
         }
       ]}
-      layout={{ title: 'A Fancy Plot'}}
+      layout={{ title: 'Green house temperature'}}
     />
 )
 
