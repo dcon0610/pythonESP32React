@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Plot from 'react-plotly.js'
+import Plotly from 'plotly.js-basic-dist-min'
+import createPlotlyComponent from "react-plotly.js/factory";
+
 import Api from './../Utils/Api'
 
+const Plot = createPlotlyComponent(Plotly);
 const Plotlygraph = () => {
 
 const [tempData, getTempData] = React.useState({date: [], temperature: [] }) 
