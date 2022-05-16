@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Plotly from 'plotly.js-basic-dist-min'
 import createPlotlyComponent from "react-plotly.js/factory";
+import styles from './Plot.module.css'
+import Api from '../Utils/Api'
 
-import Api from './../Utils/Api'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Plot = createPlotlyComponent(Plotly);
 const Plotlygraph = () => {
@@ -22,18 +25,28 @@ useEffect(() => {
     }, [])
 
 return (
-<Plot 
-     data={[
-        {
-          x: tempData.date,
-          y: tempData.temperature,
-          type: 'scatter',
-          mode: 'lines',
-          marker: {color: 'blue'},
-        }
-      ]}
-      layout={{ title: 'Green house temperature'}}
-    />
+    <div>
+        <Row>
+        <Col xs="1">
+            </Col>
+            <Col xs="11">
+            <Plot className={styles.plot}
+            data={[
+                {
+                x: tempData.date,
+                y: tempData.temperature,
+                type: 'scatter',
+                mode: 'lines',
+                marker: {color: 'blue'},
+                }
+            ]}
+            layout={{ title: 'Green house temperature'}} />
+            </Col>
+            
+
+        </Row>
+    </div>
+
 )
 
 }

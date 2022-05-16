@@ -1,29 +1,21 @@
 import React from 'react';
 import './App.css';
 import Navbar from './../Components/navbar'
-import Plot from './../Components/plotly'
-import Api from './../Utils/Api'
+import Plot from '../Components/Plot'
+
+import Container from 'react-bootstrap/Container'
 
 
 
 function App() {
- const [post, setPost] = React.useState("");
 
- React.useEffect(() => {
-   Api.test().then((response) => {
-    console.log("Response:", response);
-   setPost(response.data);
-   
- });
-},[]);
   return (
 
       
-      <div>
+      <Container fluid >
         <Navbar/>
         <Plot/>
-        
-      </div>
+      </Container>
 
   );
 }
