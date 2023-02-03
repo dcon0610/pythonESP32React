@@ -26,6 +26,12 @@ def test_app():
     response = jsonify(message="Simple server is running")
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
+
+@app.route("/api/testpost", methods = ['POST'])
+def test_app():
+    response = jsonify(message="Simple server is running")
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 @app.route("/api/temperature")
 def return_temperature():
     try:
