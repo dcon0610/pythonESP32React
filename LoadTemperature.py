@@ -28,7 +28,7 @@ def test_app():
     return response
 
 @app.route("/api/testpost", methods = ['POST'])
-def test_app():
+def test_app_post():
     response = jsonify(message="Simple server is running")
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
